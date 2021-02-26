@@ -1,43 +1,34 @@
 ## usersテーブル
 
-| Column     | Text   | Option      |
-| ---------- | ------ | ----------- |
-| nickname   | string | null: false |
-| email      | string | null: false |
-| password   | string | null: false |
+| Column             | Text   | Option      |
+| ------------------ | ------ | ----------- |
+| nickname           | string | null: false |
+| email              | string | null: false |
+| password           | string | null: false |
+| encrypted_password | string | null: false |
+| first_name         | string | null: false |
+| last_name          | string | null: false |
+| first_furigana     | string | null: false |
+| last_furigana      | string | null: false |
+| birthday           | string | null: false |
 
 ## Association
-- has_one :purchase
-- has_one :profile
 - has_many :products
+- has_one :purchase
 
 ## productsテーブル
 
-| column        | Text          | Option      |
-| ------------- | ------------- | ----------- |
-| product_name  | string        | null: false |
-| description   | string        | null: false |
-| category      | string        | null: false |
-| status        | string        | null: false |
-| shopping_cost | int           | null: false |
-| shipping_area | string        | null: false |
-| shipping_day  | string        | null: false |
-| price         | int           | null: false |
-| image         | ActiveStorage |             |
-| user          | references    |             |
-
-## Association
-- belongs_to :user
-
-## profilesテーブル
-
-| column     | Text       | Option      |
-| ---------- | ---------- | ----------- |
-| first_name | string     | null: false |
-| last_name  | string     | null: false |
-| furigana   | string     | null: false |
-| birthday   | string     | null: false |
-| user_id    | references |             |
+| column           | Text       | Option      |
+| ---------------- | ---------- | ----------- |
+| name             | string     | null: false |
+| description      | string     | null: false |
+| category_id      | integer    | null: false |
+| status_id        | integer    | null: false |
+| shopping_cost_id | integer    | null: false |
+| shipping_area_id | integer    | null: false |
+| shipping_day_id  | integer    | null: false |
+| price            | integer    | null: false |
+| user             | references |             |
 
 ## Association
 - belongs_to :user
