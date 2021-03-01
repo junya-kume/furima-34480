@@ -31,7 +31,7 @@
 
 ## Association
 - belongs_to :user
-- has_one :user_products
+- has_one :user_product
 
 ## purchasesテーブル
 
@@ -43,7 +43,7 @@
 | municipalities   | string     | null: false       |
 | address          | string     | null: false       |
 | building_number  | string     |                   |
-| user             | references | foreign_key: true |
+| user_product     | references | foreign_key: true |
 
 ## Association
 - belongs_to :user_product
@@ -57,3 +57,4 @@
 ## Association
 - belongs_to :user
 - belongs_to :product
+- belongs_to :purchase
