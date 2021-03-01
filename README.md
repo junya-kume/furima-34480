@@ -1,20 +1,19 @@
 ## usersテーブル
 
-| Column             | Text   | Option       |
-| ------------------ | ------ | ------------ |
-| nickname           | string | null: false  |
-| email              | string | unique: true |
-| encrypted_password | string | null: false  |
-| first_name         | string | null: false  |
-| last_name          | string | null: false  |
-| first_furigana     | string | null: false  |
-| last_furigana      | string | null: false  |
-| birthday           | date   | null: false  |
+| Column             | Text   | Option                    |
+| ------------------ | ------ | ------------------------- |
+| nickname           | string | null: false               |
+| email              | string | unique: true, null: false |
+| encrypted_password | string | null: false               |
+| first_name         | string | null: false               |
+| last_name          | string | null: false               |
+| first_furigana     | string | null: false               |
+| last_furigana      | string | null: false               |
+| birthday           | date   | null: false               |
 
 ## Association
 - has_many :products
-- has_many :purchase
-- belongs_to :user_products
+- has_many :user_products
 
 ## productsテーブル
 
@@ -32,7 +31,7 @@
 
 ## Association
 - belongs_to :user
-- belongs_to :user_products
+- has_one :user_products
 
 ## purchasesテーブル
 
@@ -47,13 +46,13 @@
 | user             | references | foreign_key: true |
 
 ## Association
-- belongs_to :user
+- belongs_to :user_product
 
 ## user_productsテーブル
-| Column     | Text       | Option                         |
-| ---------- | ---------- | ------------------------------ |
-| user_id    | references | null: false, foreign_key: true |
-| product_id | references | null: false, foreign_key: true |
+| Column  | Text       | Option                         |
+| ------- | ---------- | ------------------------------ |
+| user    | references | null: false, foreign_key: true |
+| product | references | null: false, foreign_key: true |
 
 ## Association
 - belongs_to :user
