@@ -37,9 +37,9 @@
 
 | column           | Text       | Option            |
 | ---------------- | ---------- | ----------------- |
-| postal_code      | string     | null: false       |
-| phone_number     | string     | null: false       |
-| shipping_area_id | string     | null: false       |
+| postal_code      | integer    | null: false       |
+| phone_number     | integer    | null: false       |
+| shipping_area_id | integer    | null: false       |
 | municipalities   | string     | null: false       |
 | address          | string     | null: false       |
 | building_number  | string     |                   |
