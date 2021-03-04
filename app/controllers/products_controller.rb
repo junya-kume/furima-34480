@@ -1,7 +1,7 @@
 class ProductsController < ApplicationController
   before_action :authenticate_user!, only: [:new]
   def index
-    @products = Product.all
+    #@products = Product.all
   end
 
   def new
@@ -15,18 +15,6 @@ class ProductsController < ApplicationController
     else
       render :new
     end
-  end
-
-  def checked
-    product = Product.find(params[:id])
-    if product.checked 
-      product.update(checked: false)
-    else
-      product.update(checked: true)
-    end
-
-    item = Product.find(params[:id])
-    render json: { post: product }
   end
 
   private
