@@ -31,26 +31,41 @@ RSpec.describe Product, type: :model do
         @product.category_id = ""
         @product.valid?
         expect(@product.errors.full_messages).to include("Category can't be blank")
+        @product.category_id = 1
+        @product.valid?
+        expect(@product.errors.full_messages).to include("Category must be other than 1")
       end
       it '商品の状態についての情報が必須であること' do
         @product.status_id = ""
         @product.valid?
         expect(@product.errors.full_messages).to include("Status can't be blank")
+        @product.status_id = 1
+        @product.valid?
+        expect(@product.errors.full_messages).to include("Status must be other than 1")
       end
       it '配送料の負担についての情報が必須であること' do
         @product.shopping_cost_id = ""
         @product.valid?
         expect(@product.errors.full_messages).to include("Shopping cost can't be blank")
+        @product.shopping_cost_id = 1
+        @product.valid?
+        expect(@product.errors.full_messages).to include("Shopping cost must be other than 1")
       end
       it '発送元の地域についての情報が必須であること' do
         @product.shipping_area_id = ""
         @product.valid?
         expect(@product.errors.full_messages).to include("Shipping area can't be blank")
+        @product.shipping_area_id = 1
+        @product.valid?
+        expect(@product.errors.full_messages).to include("Shipping area must be other than 1")
       end
       it '発送までの日数についての情報が必須であること' do
         @product.shipping_day_id = ""
         @product.valid?
         expect(@product.errors.full_messages).to include("Shipping day can't be blank")
+        @product.shipping_day_id = 1
+        @product.valid?
+        expect(@product.errors.full_messages).to include("Shipping day must be other than 1")
       end
       it '販売価格についての情報が必須であること' do
         @product.price = ""
