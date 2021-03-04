@@ -6,5 +6,5 @@ class Status < ActiveHash::Base
     { id: 4, name: '使用済み' }
   ]
   include ActiveHash::Associations
-  has_many :product
+  has_many :products
 end

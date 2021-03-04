@@ -7,5 +7,5 @@ class Day < ActiveHash::Base
     { id: 5, name: '1週間以降に発送' },
   ]
   include ActiveHash::Associations
-  has_many :product
+  has_many :products
 end

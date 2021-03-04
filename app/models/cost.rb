@@ -5,5 +5,5 @@ class Cost < ActiveHash::Base
     { id: 3, name: '送料込み(発送者負担)' }
   ]
   include ActiveHash::Associations
-  has_many :product
+  has_many :products
 end

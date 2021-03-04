@@ -31,6 +31,8 @@ RSpec.describe Product, type: :model do
         @product.category_id = ""
         @product.valid?
         expect(@product.errors.full_messages).to include("Category can't be blank")
+      end
+      it 'カテゴリーの情報が1では登録できない' do
         @product.category_id = 1
         @product.valid?
         expect(@product.errors.full_messages).to include("Category must be other than 1")
@@ -39,6 +41,8 @@ RSpec.describe Product, type: :model do
         @product.status_id = ""
         @product.valid?
         expect(@product.errors.full_messages).to include("Status can't be blank")
+      end
+      it 'カテゴリーの情報が1では登録できない' do
         @product.status_id = 1
         @product.valid?
         expect(@product.errors.full_messages).to include("Status must be other than 1")
@@ -47,6 +51,8 @@ RSpec.describe Product, type: :model do
         @product.shopping_cost_id = ""
         @product.valid?
         expect(@product.errors.full_messages).to include("Shopping cost can't be blank")
+      end
+      it 'カテゴリーの情報が1では登録できない' do
         @product.shopping_cost_id = 1
         @product.valid?
         expect(@product.errors.full_messages).to include("Shopping cost must be other than 1")
@@ -55,6 +61,8 @@ RSpec.describe Product, type: :model do
         @product.shipping_area_id = ""
         @product.valid?
         expect(@product.errors.full_messages).to include("Shipping area can't be blank")
+      end
+      it 'カテゴリーの情報が1では登録できない' do
         @product.shipping_area_id = 1
         @product.valid?
         expect(@product.errors.full_messages).to include("Shipping area must be other than 1")
@@ -63,6 +71,8 @@ RSpec.describe Product, type: :model do
         @product.shipping_day_id = ""
         @product.valid?
         expect(@product.errors.full_messages).to include("Shipping day can't be blank")
+      end
+      it 'カテゴリーの情報が1では登録できない' do
         @product.shipping_day_id = 1
         @product.valid?
         expect(@product.errors.full_messages).to include("Shipping day must be other than 1")
@@ -82,6 +92,16 @@ RSpec.describe Product, type: :model do
       end
       it '販売価格は半角数字のみ保存可能であること' do
         @product.price = "３００"
+        @product.valid?
+        expect(@product.errors.full_messages).to include("Price is not a number")
+      end
+      it '販売価格が半角英数字混合では出品できない' do
+        @product.price = "300a"
+        @product.valid?
+        expect(@product.errors.full_messages).to include("Price is not a number")
+      end
+      it '販売価格が半角英字のみでは出品できない' do
+        @product.price = "test"
         @product.valid?
         expect(@product.errors.full_messages).to include("Price is not a number")
       end
