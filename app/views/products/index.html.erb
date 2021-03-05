@@ -133,14 +133,14 @@
           <%= link_to '#' do %>
           <%= image_tag product.image, class: "item-img" %>
           <%# 商品が売れていればsold outを表示しましょう %>
-          <% @user_products.each do |user_product| %> 
-            <% if user_product.product_id == product.id %>
-            <% else %>
+          <%# @user_products.each do |user_product| %> 
+            <%# if user_product.product_id == product.id %>
+            <%# else %>
               <div class='sold-out'>
                 <span>Sold Out!!</span>
               </div>
-            <% end %>
-          <% end %>
+            <%# end %>
+          <%# end %>
           <%# //商品が売れていればsold outを表示しましょう %>
         </div>
         <div class='item-info'>
