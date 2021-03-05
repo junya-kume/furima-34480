@@ -1,12 +1,13 @@
 class Product < ApplicationRecord
   extend ActiveHash::Associations::ActiveRecordExtensions
-  belongs_to :user
   belongs_to :category
   belongs_to :status
   belongs_to :cost
   belongs_to :area
   belongs_to :day
-  
+
+  has_one :user_product
+  belongs_to :user
   has_one_attached :image
 
   with_options presence: true do

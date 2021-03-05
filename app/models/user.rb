@@ -25,6 +25,7 @@ class User < ApplicationRecord
     end
   end
   has_many :products
+  has_many :user_products
 end
 
 
