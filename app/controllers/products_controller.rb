@@ -19,34 +19,43 @@ class ProductsController < ApplicationController
   end
 
   def show
-    @product = Product.find(params[:id])
+    @products = Product.all
+    @products.each do |pro|
+      if params[:id].to_i == pro.id
+        @product = Product.find(params[:id])
+      end
+    end
+    if @product == nil
+      redirect_to action: :index
+    end
+    @user_products = UserProduct.all
   end
 
   def edit
-    if current_user == nil
-      redirect_to action: :index
-    else
-      @products = Product.all
-      @products.each do |pro|
-        if params[:id].to_i == pro.id
-          @product = Product.find(params[:id])
-          unless (current_user.id == @product.user_id)
-            redirect_to action: :index
-          end
-        else
-          redirect_to action: :index
-        end 
-      end
-    end
+  #  if current_user == nil
+  #    redirect_to action: :index
+  #  else
+  #    @products = Product.all
+  #    @products.each do |pro|
+  #      if params[:id].to_i == pro.id
+  #        @product = Product.find(params[:id])
+  #        unless (current_user.id == @product.user_id)
+  #          redirect_to action: :index
+  #        end
+  #      else
+  #        redirect_to action: :index
+  #      end 
+  #    end
+  #  end
   end
 
   def update
-    @product = Product.find(params[:id])
-    if @product.update(product_params)
-      redirect_to product_path
-    else
-      render :edit
-    end
+  #  @product = Product.find(params[:id])
+  #  if @product.update(product_params)
+  #    redirect_to product_path
+  #  else
+  #    render :edit
+  #  end
   end
 
   private
