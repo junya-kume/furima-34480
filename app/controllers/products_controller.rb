@@ -7,7 +7,7 @@ class ProductsController < ApplicationController
 
   def new
     @product = Product.new
-  end
+  end 
 
   def create
     @product = Product.new(product_params)
@@ -15,6 +15,33 @@ class ProductsController < ApplicationController
       redirect_to root_path
     else
       render :new
+    end
+  end
+
+  def show
+    @product = Product.find(params[:id])
+  end
+
+  def edit
+    @products = Product.all
+    @products.each do |pro|
+      if params[:id].to_i == pro.id
+        @product = Product.find(params[:id])
+        unless (current_user.id == @product.user_id)
+          redirect_to action: :index
+        end
+      else
+        redirect_to action: :index
+      end 
+    end
+  end
+
+  def update
+    @product = Product.find(params[:id])
+    if @product.update(product_params)
+      redirect_to product_path
+    else
+      render :edit
     end
   end
 
