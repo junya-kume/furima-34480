@@ -23,16 +23,20 @@ class ProductsController < ApplicationController
   end
 
   def edit
-    @products = Product.all
-    @products.each do |pro|
-      if params[:id].to_i == pro.id
-        @product = Product.find(params[:id])
-        unless (current_user.id == @product.user_id)
+    if current_user == nil
+      redirect_to action: :index
+    else
+      @products = Product.all
+      @products.each do |pro|
+        if params[:id].to_i == pro.id
+          @product = Product.find(params[:id])
+          unless (current_user.id == @product.user_id)
+            redirect_to action: :index
+          end
+        else
           redirect_to action: :index
-        end
-      else
-        redirect_to action: :index
-      end 
+        end 
+      end
     end
   end
 
