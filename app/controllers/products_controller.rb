@@ -19,16 +19,7 @@ class ProductsController < ApplicationController
   end
 
   def show
-    @products = Product.all
-    @products.each do |pro|
-      if params[:id].to_i == pro.id
-        @product = Product.find(params[:id])
-      end
-    end
-    if @product == nil
-      redirect_to action: :index
-    end
-    @user_products = UserProduct.all
+    @product = Product.find(params[:id])
   end
 
   def edit
