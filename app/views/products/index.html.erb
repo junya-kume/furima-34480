@@ -130,12 +130,11 @@
       <% @products.each do |product| %>
         <li class='list'>
         <div class='item-img-content'>
-          <%= link_to '#' do %>
+          <%= link_to product_path(product) do %>
           <%= image_tag product.image, class: "item-img" %>
           <%# 商品が売れていればsold outを表示しましょう %>
           <%# @user_products.each do |user_product| %> 
-            <%# if user_product.product_id == product.id %>
-            <%# else %>
+            <%# unless user_product.product_id == product.id %>
               <div class='sold-out'>
                 <span>Sold Out!!</span>
               </div>
