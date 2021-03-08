@@ -1,5 +1,5 @@
 class ProductsController < ApplicationController
-  before_action :authenticate_user!, only: [:new, :create]
+  before_action :authenticate_user!, only: [:new, :create, :edit, :update]
   def index
     @products = Product.all.order("created_at DESC")
     #@user_products = UserProduct.all
@@ -23,21 +23,9 @@ class ProductsController < ApplicationController
   end
 
   def edit
-    if current_user == nil
+    @product = Product.find(params[:id])
+    unless (current_user.id == @product.user_id)
       redirect_to action: :index
-    else
-      @products = Product.all
-      @products.each do |pro|
-        if params[:id].to_i == pro.id
-          @product = Product.find(params[:id])
-          unless (current_user.id == @product.user_id)
-            redirect_to action: :index
-          end
-        end 
-      end
-      if @product == nil
-        redirect_to action: :index
-      end
     end
   end
 
