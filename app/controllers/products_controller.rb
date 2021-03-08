@@ -1,5 +1,7 @@
 class ProductsController < ApplicationController
-  before_action :authenticate_user!, only: [:new, :create]
+  before_action :authenticate_user!, only: [:new, :create, :edit, :update]
+  before_action :product_find, only:[:show, :edit, :update]
+  before_action :user_check, only:[:edit, :update]
   def index
     @products = Product.all.order("created_at DESC")
     #@user_products = UserProduct.all
@@ -19,38 +21,31 @@ class ProductsController < ApplicationController
   end
 
   def show
-    @product = Product.find(params[:id])
   end
 
   def edit
-  #  if current_user == nil
-  #    redirect_to action: :index
-  #  else
-  #    @products = Product.all
-  #    @products.each do |pro|
-  #      if params[:id].to_i == pro.id
-  #        @product = Product.find(params[:id])
-  #        unless (current_user.id == @product.user_id)
-  #          redirect_to action: :index
-  #        end
-  #      else
-  #        redirect_to action: :index
-  #      end 
-  #    end
-  #  end
   end
 
   def update
-  #  @product = Product.find(params[:id])
-  #  if @product.update(product_params)
-  #    redirect_to product_path
-  #  else
-  #    render :edit
-  #  end
+    if @product.update(product_params)
+      redirect_to product_path
+    else
+      render :edit
+    end
   end
 
   private
   def product_params
     params.require(:product).permit(:name, :description, :category_id, :status_id, :shopping_cost_id, :shipping_area_id, :shipping_day_id, :price, :image).merge(user_id: current_user.id)
+  end
+
+  def product_find
+    @product = Product.find(params[:id])
+  end
+  
+  def user_check
+    unless (current_user.id == @product.user_id)
+      redirect_to action: :index
+    end
   end
 end
