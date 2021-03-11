@@ -7,7 +7,7 @@ require("@rails/ujs").start()
 require("@rails/activestorage").start()
 require("channels")
 require("../calc")
-require("../card")
+//require("../card")
 
 
 

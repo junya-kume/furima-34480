@@ -1,32 +1,32 @@
 class PurchasesController < ApplicationController
+  before_action :authenticate_user!, only: [:index, :create]
   def index
     @product = Product.find(params[:product_id])
-    @purchase = Purchase.new
+    find_purchase = Purchase.find_by user_product_id: @product.id
+    @purchase_product = PurchaseProduct.new
+    if find_purchase == nil
+      if current_user.id == @product.user_id
+        redirect_to root_path
+      end
+    else
+      redirect_to root_path
+    end
   end 
   
   def create
-    @purchase = Purchase.new(purchase_params)
-    if @purchase.valid?
-      pay_item
-      @purchase.save
-      return redirect_to root_path
+    @product = Product.find(params[:product_id])
+    @purchase_product = PurchaseProduct.new(purchase_params)
+    binding.pry
+    if @purchase_product.valid?
+      @purchase_product.save
+      redirect_to root_path
     else
-      render 'index'
+      render :index
     end
   end
 
   private
-
   def purchase_params
-    params.require(:purchase).permit(:postal_code, :phone_number, :shipping_area_id, :municipalities, :address, :building_number, :user_product).merge(token: params[:token])
-  end
-
-  def pay_item
-    Payjp.api_key = ENV["PAYJP_SECRET_KEY"]  # 自身のPAY.JPテスト秘密鍵を記述しましょう
-    Payjp::Charge.create(
-      amount: purchase_params[:price],  # 商品の値段
-      card: purchase_params[:token],    # カードトークン
-      currency: 'jpy'                 # 通貨の種類（日本円）
-    )
+    params.require(:purchase_product).permit(:postal_code, :phone_number, :shipping_area_id, :municipalities, :address, :building_number).merge(user_id: current_user.id, product_id: @product.id)
   end
 end
