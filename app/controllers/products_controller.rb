@@ -28,6 +28,10 @@ class ProductsController < ApplicationController
   end
 
   def edit
+    find_purchase = UserProduct.find_by product_id: @product.id
+    unless find_purchase == nil
+      redirect_to root_path
+    end
   end
 
   def update

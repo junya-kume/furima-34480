@@ -2,7 +2,7 @@ class PurchasesController < ApplicationController
   before_action :authenticate_user!, only: [:index, :create]
   def index
     @product = Product.find(params[:product_id])
-    find_purchase = Purchase.find_by user_product_id: @product.id
+    find_purchase = UserProduct.find_by product_id: @product.id
     @purchase_product = PurchaseProduct.new
     if find_purchase == nil
       if current_user.id == @product.user_id
