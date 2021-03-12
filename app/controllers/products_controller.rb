@@ -4,7 +4,7 @@ class ProductsController < ApplicationController
   before_action :user_check, only:[:edit, :update, :destroy]
   def index
     @products = Product.all.order("created_at DESC")
-    #@user_products = UserProduct.all
+    @user_products = UserProduct.all
   end
 
   def new
@@ -21,9 +21,17 @@ class ProductsController < ApplicationController
   end
 
   def show
+    @user_product = UserProduct.find_by product_id:@product.id
+    if product_find.user_product == nil
+      @user_product = UserProduct.new
+    end 
   end
 
   def edit
+    find_purchase = UserProduct.find_by product_id: @product.id
+    unless product_find.user_product == nil
+      redirect_to root_path
+    end
   end
 
   def update
