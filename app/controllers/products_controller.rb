@@ -22,14 +22,14 @@ class ProductsController < ApplicationController
 
   def show
     @user_product = UserProduct.find_by product_id:@product.id
-    if @user_product == nil
+    if product_find.user_product == nil
       @user_product = UserProduct.new
     end 
   end
 
   def edit
     find_purchase = UserProduct.find_by product_id: @product.id
-    unless find_purchase == nil
+    unless product_find.user_product == nil
       redirect_to root_path
     end
   end

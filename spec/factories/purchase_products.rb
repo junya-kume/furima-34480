@@ -6,8 +6,8 @@ FactoryBot.define do
     municipalities   {"test"}
     address          {"test"}
     building_number  {"test"}
-
-    user_id          {1}
-    product_id       {1}
+    token            {"tok_00000000000000000000000000"}
+    user_id          {}
+    product_id       {}
   end
 end
