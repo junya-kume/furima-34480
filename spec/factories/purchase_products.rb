@@ -7,7 +7,5 @@ FactoryBot.define do
     address          {"test"}
     building_number  {"test"}
     token            {"tok_00000000000000000000000000"}
-    user_id          {}
-    product_id       {}
   end
 end
