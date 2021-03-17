@@ -8,9 +8,9 @@ class PurchaseProduct
     validates :user_id
     validates :product_id
     validates :token
-    validates :postal_code, format:{ with: POTAL_REGEX, message: '○○○-○○○○以外は登録できません'}
-    validates :phone_number, length:{maximum: 11},format:{ with: PHONE_REGEX, message: '数字11ケタ以内ではないと登録できません'}
-    validates :shipping_area_id, numericality: {other_than: 1}
+    validates :postal_code, format:{ with: POTAL_REGEX, message: 'は○○○-○○○○以外は登録できません'}
+    validates :phone_number, length:{maximum: 11},format:{ with: PHONE_REGEX, message: 'は数字11ケタ以内ではないと登録できません'}
+    validates :shipping_area_id, numericality: {other_than: 1, message: 'を変更してくだい' }
     validates :municipalities
     validates :address
   end
