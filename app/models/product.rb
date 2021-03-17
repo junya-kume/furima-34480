@@ -8,12 +8,11 @@ class Product < ApplicationRecord
 
   has_one :user_product
   belongs_to :user
-  has_one_attached :image
+  has_many_attached :images
 
   with_options presence: true do
     validates :name
     validates :description
-    validates :image
     with_options numericality: {other_than: 1} do
       validates :category_id
       validates :status_id

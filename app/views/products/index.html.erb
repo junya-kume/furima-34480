@@ -125,13 +125,15 @@
     <h2 class='title'>ピックアップカテゴリー</h2>
     <%= link_to '新規投稿商品', "#", class: "subtitle" %>
     <ul class='item-lists'>
-
+  <% if @products[0] != nil%>
       <%# 商品のインスタンス変数になにか入っている場合、中身のすべてを展開できるようにしましょう %>
       <% @products.each do |product| %>
         <li class='list'>
         <div class='item-img-content'>
           <%= link_to product_path(product) do %>
-          <%= image_tag product.image, class: "item-img" %>
+          <% product.images.each do |image| %>
+            <%= image_tag image, class: "images" %>
+          <% end %>
           <%# 商品が売れていればsold outを表示しましょう %>
           <% @user_products.each do |user_product| %> 
             <% if user_product.product_id == product.id %>
@@ -157,7 +159,7 @@
         <% end %>
       <% end %>
       <%# //商品のインスタンス変数になにか入っている場合、中身のすべてを展開できるようにしましょう %>
-
+<% end %>
       <%# 商品がない場合は以下のダミー商品が表示されるようにしましょう %>
       <%# 商品がある場合は表示されないようにしましょう %>
       <% if @products.length == 0 %>
