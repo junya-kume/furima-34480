@@ -23,9 +23,6 @@
         </p>
         <%= f.file_field :images, name: 'product[images][]', id:"message_image" %>
         <div id="image-list"></div>
-        <% @product.images.each do |image| %>
-          <%= image_tag image, class: 'images' %>
-        <% end %>
       </div>
     </div>
     <%# /出品画像 %>
