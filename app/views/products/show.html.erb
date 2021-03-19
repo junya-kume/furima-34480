@@ -8,7 +8,7 @@
     </h2>
     <div class="item-img-content">
     <% @product.images.each do |image| %>
-      <%= image_tag image,height: 400,width: 400,class:"images" %>
+      <%= image_tag image,height: 400,width: 400,class:"item-box-img" %>
       <%# 商品が売れている場合は、sold outを表示しましょう %>
       <% if @user_product.product_id == @product.id %>
         <div class="sold-out">

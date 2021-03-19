@@ -132,7 +132,7 @@
         <div class='item-img-content'>
           <%= link_to product_path(product) do %>
           <% product.images.each do |image| %>
-            <%= image_tag image, class: "images" %>
+            <%= image_tag image, class: "item-img" %>
           <% end %>
           <%# 商品が売れていればsold outを表示しましょう %>
           <% @user_products.each do |user_product| %> 
