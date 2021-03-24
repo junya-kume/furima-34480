@@ -13,7 +13,7 @@ class User < ApplicationRecord
     validates :email
     validates :birthday
     with_options format:{ with: PASSWORD_REGEX, message: 'Include both letters and numbers'} do
-      validates :password
+      validates :password, on: :create
     end
     with_options format:{ with: NAME_REGEX, message: '全角漢字・ひらがな・カタカナ以外は登録できません'} do
       validates :first_name
