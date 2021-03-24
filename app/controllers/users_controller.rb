@@ -10,7 +10,6 @@ class UsersController < ApplicationController
   end
 
   def update
-    binding.pry
     if current_user.update(user_params) # 更新出来たかを条件分岐する
 
       redirect_to root_path # 更新できたらrootパスへ
